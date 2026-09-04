@@ -2,8 +2,8 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 
-RUN npm config set proxy http://10.17.42.9:8080 && \
-    npm config set https-proxy http://10.17.42.9:8080
+RUN npm config set proxy http://10.36.9.26:8080 && \
+    npm config set https-proxy http://10.36.9.26:8080
 
 COPY package*.json ./
 RUN npm ci
