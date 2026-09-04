@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ecom-postgres
+    environment:
+      POSTGRES_DB: ecom_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - ecom-net
+
+  backend:
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    container_name: ecom-backend
+    environment:
+      # Ghi đè cấu hình DB để trỏ vào container postgres qua Docker DNS
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ecom_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgrespassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - ecom-net
+
+  frontend:
+    build:
+      context: ./frontend # Đổi thành tên thư mục chứa Next.js
+      dockerfile: Dockerfile
+    container_name: ecom-frontend
+    environment:
+      BACKEND_INTERNAL_URL: http://backend:8080
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - ecom-net
+
+volumes:
+  pgdata:
+
+networks:
+  ecom-net:
+    driver: bridge
