@@ -1,8 +1,12 @@
 // Server Component: tự động gọi API từ Spring Boot khi render trang
 async function getProducts() {
-  const res = await fetch("http://localhost:8080/api/products", {
+  // Lấy từ biến môi trường (Docker DNS nội bộ), mặc định là localhost khi dev trên máy thật
+  const backendUrl = process.env.BACKEND_INTERNAL_URL || "http://localhost:8080";
+
+  const res = await fetch(`${backendUrl}/api/products`, {
     cache: "no-store", // Luôn lấy dữ liệu mới nhất từ backend
   });
+
   if (!res.ok) {
     throw new Error("Không thể tải danh sách sản phẩm");
   }
