@@ -4,9 +4,8 @@ WORKDIR /app
 COPY pom.xml .
 # Tải dependencies trước để tận dụng Docker cache layer
 COPY settings.xml .
-RUN mvn dependency:go-offline -B -s settings.xml
 COPY src ./src
-RUN mvn clean package -DskipTests -s settings.xml
+RUN mvn clean package -DskipTests -s settings.xml -T 1C
 
 # Stage 2: Chạy ứng dụng với JRE nhẹ
 FROM eclipse-temurin:21-jre-alpine
