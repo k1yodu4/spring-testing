@@ -81,8 +81,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: spring-testing-backend:latest # Thay bằng image bạn đã build hoặc link Harbor
-          imagePullPolicy: Never
+          image: harbor.lab.local/spring-testing/spring-testing-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
@@ -132,8 +132,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: spring-testing-frontend:latest # Thay bằng image bạn đã build hoặc link Harbor
-          imagePullPolicy: Never
+          image: harbor.lab.local/spring-testing/spring-testing-frontend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
           env:
