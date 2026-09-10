@@ -15,7 +15,8 @@ spec:
     spec:
       initContainers:
         - name: wait-for-postgres
-          image: busybox:1.36
+          image: harbor.lab.local/spring-testing/busybox:1.36
+          imagePullPolicy: IfNotPresent
           command:
             - sh
             - -c
