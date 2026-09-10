@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile
     container_name: ecom-frontend
     environment:
-      BACKEND_INTERNAL_URL: http://backend:8081
+      BACKEND_INTERNAL_URL: http://backend:8080
     ports:
       - "3000:3000"
     depends_on:
