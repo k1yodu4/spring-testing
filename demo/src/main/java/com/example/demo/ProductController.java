@@ -14,13 +14,13 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    // Lấy danh sách sản phẩm: GET http://localhost:8080/api/products
+    // Lấy danh sách sản phẩm: GET http://localhost:8081/api/products
     @GetMapping
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // Thêm sản phẩm mới: POST http://localhost:8080/api/products
+    // Thêm sản phẩm mới: POST http://localhost:8081/api/products
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         return productRepository.save(product);
