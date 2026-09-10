@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:16-alpine
+          image: harbor.lab.local/spring-testing/postgres:16-alpine
           ports:
             - containerPort: 5432
           env:
