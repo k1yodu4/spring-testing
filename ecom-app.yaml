@@ -96,7 +96,7 @@ spec:
           image: harbor.lab.local/spring-testing/spring-testing-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8081
+            - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://postgres-service:5432/ecom_db
@@ -123,7 +123,7 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8081
+    - port: 8080
       targetPort: 8080
 ---
 # 3. NEXT.JS FRONTEND (Deployment + Service)
@@ -150,7 +150,7 @@ spec:
             - containerPort: 3000
           env:
             - name: BACKEND_INTERNAL_URL
-              value: http://backend-service:8081
+              value: http://backend-service:8080
           resources:
             requests:
               memory: "256Mi"
