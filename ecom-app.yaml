@@ -124,7 +124,7 @@ spec:
     app: backend
   ports:
     - port: 8081
-      targetPort: 8081
+      targetPort: 8080
 ---
 # 3. NEXT.JS FRONTEND (Deployment + Service)
 apiVersion: apps/v1
